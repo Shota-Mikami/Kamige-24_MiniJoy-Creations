@@ -11,8 +11,6 @@ public class Relese : MonoBehaviour
 
     // public GameObject hand;
 
-    public SphereCollider ball;
-
     public float speed_level;
     public float startTime;
 
@@ -48,8 +46,8 @@ public class Relese : MonoBehaviour
                 startTime = 0.0f;
 
                 Swich = true;
-                ball.isTrigger = false;
-
+                //transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = false;
+                transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = false;
                 // GetComponent<FixedJoint>().connectedBody = null;
                 Destroy(GetComponent<HingeJoint>());
                 this.gameObject.transform.parent = null;
@@ -86,7 +84,8 @@ public class Relese : MonoBehaviour
             {
 
                 Swich = false;
-                ball.isTrigger = true;
+                //transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
+                transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
                 this.gameObject.transform.rotation =default;
                 this.gameObject.transform.parent = body.gameObject.transform;
                 pole_ob.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
