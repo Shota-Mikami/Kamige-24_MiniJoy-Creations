@@ -11,6 +11,7 @@ public class Rotate : MonoBehaviour
     public Rigidbody ball;
     public static Vector2 m_moveLimit = new Vector2(4.15f, 3.0f);
     public float m_speed;
+    public float speed_max;
 
     public float speed_level;
     public float oldspeed_level;
@@ -52,24 +53,28 @@ public class Rotate : MonoBehaviour
             //var angles = transform.localEulerAngles;
             //angles.z = angle - 90;
             //transform.localEulerAngles = angles;
-            transform.Rotate(new Vector3(0, 0, speed_level));
 
 
 
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            startTime = Time.time;
-             speed_level = 0.25f;
+           // startTime = Time.time;
+             speed_level += m_speed;
+            if(speed_level > speed_max)
+            {
+                speed_level = speed_max;
+            }
+            transform.Rotate(new Vector3(0, 0, speed_level));
 
-            Time.timeScale = 0.5f;
+            //Time.timeScale = 0.5f;
 
             ball.mass = 0.0f;
         }
-        if (Input.GetMouseButtonUp(0) || startTime + 1.0f <= Time.time && startTime != 0.0f)
+        if (Input.GetMouseButtonUp(0))
         {
-            Time.timeScale = 1.0f;
-            startTime = 0.0f;
+            //Time.timeScale = 1.0f;
+            //startTime = 0.0f;
             Swich = true;
 
             ball.mass = 1.0f;
@@ -79,9 +84,9 @@ public class Rotate : MonoBehaviour
         {
             Swich = false;
 
-            speed_level = oldspeed_level;
+            speed_level = 0.0f;
         }
-
+            /*
         if (Input.GetKeyDown("1"))
         {
             speed_level = 2.0f;
@@ -92,7 +97,7 @@ public class Rotate : MonoBehaviour
             speed_level = 3.0f;
             oldspeed_level = speed_level;
         }
-
+            */
     }
 
 

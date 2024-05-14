@@ -11,6 +11,8 @@ public class Relese : MonoBehaviour
 
     // public GameObject hand;
 
+    public float m_speed;
+    public float speed_max;
     public float speed_level;
     public float startTime;
 
@@ -35,12 +37,16 @@ public class Relese : MonoBehaviour
         {
 
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
-                startTime = Time.time;
+                speed_level += m_speed;
+                if(speed_level > speed_max)
+                {
+                    speed_level = speed_max;
+                }
             }
 
-            if (Input.GetMouseButtonUp(0) || startTime + 1.0f <= Time.time && startTime != 0.0f)
+            if (Input.GetMouseButtonUp(0))
             {
                 startTime = 0.0f;
 
@@ -110,9 +116,12 @@ public class Relese : MonoBehaviour
 
                 pole.constraints = RigidbodyConstraints.FreezeRotation;
 
+                speed_level = 0.0f;
+
             }
 
         }
+        /*
 
         if (Input.GetKeyDown("1"))
         {
@@ -123,6 +132,6 @@ public class Relese : MonoBehaviour
             speed_level = 75.0f;
         }
 
-
+        */
     }
 }
