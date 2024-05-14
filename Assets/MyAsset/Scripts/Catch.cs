@@ -10,9 +10,11 @@ public class Catch : MonoBehaviour
     public GameObject ball;
     public GameObject deathEnemy;
 
+    private bool isHold;
+
     void Start()
     {
-
+        isHold = false;
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class Catch : MonoBehaviour
         if (Input.GetKeyDown("f"))
         {
             //デスエネミー設定
-            if(deathEnemy != null) 
+            if(deathEnemy != null && !isHold) 
             {
                 deathEnemy.transform.position = ball.transform.position;
                 deathEnemy.AddComponent<FixedJoint>();
@@ -35,6 +37,8 @@ public class Catch : MonoBehaviour
 
 
                 ball.SetActive(false);
+
+                isHold = true;
             }
         }
 
@@ -46,24 +50,39 @@ public class Catch : MonoBehaviour
             ball.SetActive(true);
 
             //デスエネミーが自壊したのでなければ
-            if(deathEnemy != null)
+            if(deathEnemy != null && isHold)
             {
                 Destroy( deathEnemy );
                 deathEnemy = null;
+                isHold = false;
             }
 
             
         }
-    }
 
-    void OnTriggerStay(Collider collider)
-    {
-        if (collider.gameObject.tag == "ball"/* && deathEnemy == null*/)
+        RaycastHit hit;
+
+        var radius = transform.lossyScale.x * 0.5f;
+
+
+
+        //var isHit = Physics.SphereCast(transform.position, radius, transform.right, out hit,1);
+        if (!isHold)
         {
-            deathEnemy = collider.gameObject;
+            if (Physics.SphereCast(transform.position, radius, transform.right, out hit, 1))
+            {
+                Debug.Log(hit.collider.tag);
+                if (hit.collider.tag == "ball")
+                {
+                    deathEnemy = hit.collider.gameObject;
+                }
+            }
+            else
+            {
+
+                deathEnemy = null;
+            }
         }
     }
-
-
 }
 

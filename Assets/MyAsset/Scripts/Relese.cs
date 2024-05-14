@@ -30,8 +30,7 @@ public class Relese : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
+       
         if (!Swich)
         {
 
@@ -47,7 +46,14 @@ public class Relese : MonoBehaviour
 
                 Swich = true;
                 //transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = false;
-                transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = false;
+                if (transform.GetChild(0).gameObject.transform.childCount == 1 && transform.GetChild(0).gameObject.transform.GetChild(0).gameObject != null)
+                {
+                    transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().isTrigger = false;
+                }
+                else
+                {
+                    transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = false;
+                }
                 // GetComponent<FixedJoint>().connectedBody = null;
                 Destroy(GetComponent<HingeJoint>());
                 this.gameObject.transform.parent = null;
@@ -85,7 +91,15 @@ public class Relese : MonoBehaviour
 
                 Swich = false;
                 //transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
-                transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
+                if (transform.GetChild(0).gameObject.transform.childCount == 1 && transform.GetChild(0).gameObject.transform.GetChild(0).gameObject != null)
+                {
+                    transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().isTrigger = true;
+                }
+                else
+                {
+                    transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
+                }
+                //transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
                 this.gameObject.transform.rotation =default;
                 this.gameObject.transform.parent = body.gameObject.transform;
                 pole_ob.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
