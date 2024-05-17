@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 6227962223492253644}
   - component: {fileID: 1339280331616384081}
   - component: {fileID: -1769657072984197274}
+  - component: {fileID: 2808012275219102507}
   m_Layer: 0
   m_Name: Hanekko
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +153,21 @@ MonoBehaviour:
   HP: 1
   DistToGround: 0.25
   JumpPower: 1
+--- !u!114 &2808012275219102507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405405471062703988}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55b1e1ad4bed3c4a801831b034eda06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  AttackPower: 10
+  AirRes: 0
 --- !u!1 &5863049490548795514
 GameObject:
   m_ObjectHideFlags: 0

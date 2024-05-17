@@ -24,10 +24,12 @@ public class move : MonoBehaviour
         if (Input.GetKey("d"))
         {
             rb.velocity = transform.right * speed;
+            transform.rotation = new Quaternion(0, 0, 0, 0);
         }
         if (Input.GetKey("a"))
         {
-            rb.velocity = -transform.right * speed;
+            rb.velocity = transform.right * speed;
+            transform.rotation = new Quaternion(0, 180, 0, 0);
         }
 
         if (Input.GetKeyDown("r"))

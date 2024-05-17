@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         Move(Time.deltaTime);
         if (HP <= 0)
         {
-            this.gameObject.AddComponent<Ball>();
+            this.gameObject.GetComponent<Ball>().enabled = true;
             this.gameObject.tag = "ball";
             enabled = false;
         }
