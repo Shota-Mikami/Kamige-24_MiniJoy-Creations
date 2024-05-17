@@ -26,7 +26,7 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (!Swich)
         {
 
@@ -54,53 +54,56 @@ public class Rotate : MonoBehaviour
             //angles.z = angle - 90;
             //transform.localEulerAngles = angles;
 
-
-
-        }
-        if (Input.GetMouseButton(0))
-        {
-           // startTime = Time.time;
-             speed_level += m_speed;
-            if(speed_level > speed_max)
+            if (Input.GetMouseButton(0))
             {
-                speed_level = speed_max;
+                // startTime = Time.time;
+                speed_level += m_speed;
+                if (speed_level > speed_max)
+                {
+                    speed_level = speed_max;
+                }
+                transform.Rotate(new Vector3(0, 0, speed_level));
+
+                //Time.timeScale = 0.5f;
+
+                ball.mass = 0.0f;
             }
-            transform.Rotate(new Vector3(0, 0, speed_level));
+            if (Input.GetMouseButtonUp(0))
+            {
+                //Time.timeScale = 1.0f;
+                //startTime = 0.0f;
+                Swich = true;
 
-            //Time.timeScale = 0.5f;
+                ball.mass = 1.0f;
 
-            ball.mass = 0.0f;
+            }
         }
-        if (Input.GetMouseButtonUp(0))
+
+        else
         {
-            //Time.timeScale = 1.0f;
-            //startTime = 0.0f;
-            Swich = true;
-
-            ball.mass = 1.0f;
-
-        }
             if (Input.GetMouseButtonDown(1))
-        {
-            Swich = false;
+            {
+                Swich = false;
 
-            speed_level = 0.0f;
+                speed_level = 0.0f;
+            }
+
         }
-            /*
-        if (Input.GetKeyDown("1"))
-        {
-            speed_level = 2.0f;
-            oldspeed_level = speed_level;
-        }
-        if (Input.GetKeyDown("2"))
-        {
-            speed_level = 3.0f;
-            oldspeed_level = speed_level;
-        }
-            */
+
+        /*
+    if (Input.GetKeyDown("1"))
+    {
+        speed_level = 2.0f;
+        oldspeed_level = speed_level;
+    }
+    if (Input.GetKeyDown("2"))
+    {
+        speed_level = 3.0f;
+        oldspeed_level = speed_level;
+    }
+        */
     }
 
 
 
 }
-
