@@ -10,6 +10,11 @@ public class Catch : MonoBehaviour
     public GameObject ball;
     public GameObject deathEnemy;
 
+    [SerializeField] public float handSize;
+    [SerializeField] public Vector3 handPos;
+    [SerializeField] public float handSpan;
+    [SerializeField] public GameObject player;
+
     private bool isHold;
 
     void Start()
@@ -33,6 +38,14 @@ public class Catch : MonoBehaviour
                 deathEnemy.GetComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
                 deathEnemy.GetComponent<FixedJoint>().enablePreprocessing = false;
                 deathEnemy.GetComponent<Collider>().isTrigger = true;
+                if (deathEnemy.transform.childCount != 0)
+                {
+                    Transform[] children = deathEnemy.transform.GetComponentsInChildren<Transform>();
+                    foreach (Transform child in children)
+                    {
+                        child.gameObject.GetComponent<Collider>().isTrigger = true;
+                    }
+                }
                 deathEnemy.transform.parent = transform.GetChild(0).gameObject.transform;
 
 
@@ -64,12 +77,10 @@ public class Catch : MonoBehaviour
 
         var radius = transform.lossyScale.x * 0.5f;
 
-
-
         //var isHit = Physics.SphereCast(transform.position, radius, transform.right, out hit,1);
         if (!isHold)
         {
-            if (Physics.SphereCast(transform.position, radius, transform.right, out hit, 1))
+            if (Physics.SphereCast(transform.position + handPos, handSize, transform.right, out hit, handSpan))
             {
                 Debug.Log(hit.collider.tag);
                 if (hit.collider.tag == "ball")
@@ -83,6 +94,12 @@ public class Catch : MonoBehaviour
                 deathEnemy = null;
             }
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + handPos + transform.right * handSpan, handSize);
     }
 }
 

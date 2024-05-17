@@ -58,6 +58,12 @@ public class Relese : MonoBehaviour
                 }
                 else
                 {
+                    //子オブジェクト全体のトリガーを外す
+                    //Transform[] children = transform.GetChild(0).gameObject.transform.GetComponentsInChildren<Transform>();
+                    //foreach(Transform child in children)
+                    //{
+                    //    child.gameObject.GetComponent<Collider>().isTrigger = false;
+                    //}
                     transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = false;
                 }
                 // GetComponent<FixedJoint>().connectedBody = null;
@@ -103,10 +109,16 @@ public class Relese : MonoBehaviour
                 }
                 else
                 {
+                    //子オブジェクト全体をtrueにする？
+                    //Transform[] children = transform.GetChild(0).gameObject.transform.GetComponentsInChildren<Transform>();
+                    //foreach (Transform child in children)
+                    //{
+                    //    child.gameObject.GetComponent<Collider>().isTrigger = true;
+                    //}
                     transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
                 }
                 //transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
-                this.gameObject.transform.rotation =default;
+                //this.gameObject.transform.rotation =default;
                 this.gameObject.transform.parent = body.gameObject.transform;
                 pole_ob.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
                 pole_ob.AddComponent<HingeJoint>();

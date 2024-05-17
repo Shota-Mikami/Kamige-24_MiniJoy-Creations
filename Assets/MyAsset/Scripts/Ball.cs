@@ -13,7 +13,10 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (enabled)
+        {
+            enabled = false;
+        }
     }
 
     //‘Š«‚É‚æ‚é”j‰óˆ—‚ğŒã‚Å’Ç‰Á
@@ -22,5 +25,16 @@ public class Ball : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (transform.parent)
+        {
+            if (coll.gameObject.tag == "Enemy")
+            {
+                coll.gameObject.GetComponent<Enemy>().Damage(AttackPower);
+            }
+        }
     }
 }
