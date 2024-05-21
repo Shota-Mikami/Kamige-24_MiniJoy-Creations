@@ -17,10 +17,13 @@ public class Catch : MonoBehaviour
 
     private bool isHold;
 
+    public RectTransform CatchUI;//これにUIを取り付ける
     void Start()
     {
         isHold = false;
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -31,6 +34,9 @@ public class Catch : MonoBehaviour
             //デスエネミー設定
             if(deathEnemy != null && !isHold) 
             {
+
+                CatchUI.gameObject.SetActive(false);
+
                 deathEnemy.transform.position = ball.transform.position;
                 deathEnemy.AddComponent<FixedJoint>();
                 deathEnemy.GetComponent<FixedJoint>().anchor = new Vector3(0.0f, 0.0f, 0.0f);
@@ -86,11 +92,15 @@ public class Catch : MonoBehaviour
                 if (hit.collider.tag == "ball")
                 {
                     deathEnemy = hit.collider.gameObject;
+
+                    CatchUI.gameObject.SetActive(true);//UIの出現
+                    CatchUI.position = RectTransformUtility.WorldToScreenPoint(Camera.main, deathEnemy.transform.position);//UIの位置の移動
                 }
             }
             else
             {
 
+                CatchUI.gameObject.SetActive(false);
                 deathEnemy = null;
             }
         }

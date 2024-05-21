@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Relese : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Relese : MonoBehaviour
 
 
     public Vector3 chara;
+
+    public Image meter;
     
 
     bool Swich = false;
@@ -32,7 +35,8 @@ public class Relese : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
+        meter.fillAmount = speed_level / speed_max;
         if (!Swich)
         {
 
