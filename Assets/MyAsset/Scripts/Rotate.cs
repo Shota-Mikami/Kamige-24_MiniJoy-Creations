@@ -10,23 +10,32 @@ public class Rotate : MonoBehaviour
 
     public Rigidbody ball;
     public static Vector2 m_moveLimit = new Vector2(4.15f, 3.0f);
-    public float m_speed;
-    public float speed_max;
+    [SerializeField] private float rotate_power;            //‰ñ“]‰Á‘¬—Í
+    [SerializeField] private float rotate_speed_max;        //‰ñ“]Å‘å‘¬“x
+    [SerializeField] private float rotate_speed_init;       //‰ñ“]‰‘¬
+    [SerializeField] private float rotate_speed_down_rate;  //‰ñ“]Œ¸‘¬ŒW”
+    [SerializeField] private float rotate_speed_up_rate;    //‰ñ“]‰Á‘¬ŒW”
 
-    public float speed_level;
+    [SerializeField] private float rot_border_DtoU; //‘æˆê`‘æ“ñÛŒÀ
+    [SerializeField] private float rot_border_UtoU; //‘æ“ñ`‘æOÛŒÀ
+    [SerializeField] private float rot_border_UtoD; //‘æO`‘ælÛŒÀ
+    private bool charged;
+
+    private float rotate_speed;
     public float oldspeed_level;
 
     public float startTime;
     bool Swich = false;
     void Start()
     {
-        speed_level = 0.0f;
+        rotate_speed = rotate_speed_init;
+        charged = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
         if (!Swich)
         {
 
@@ -56,13 +65,51 @@ public class Rotate : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                // startTime = Time.time;
-                speed_level += m_speed;
-                if (speed_level > speed_max)
+                //Å‘å‘¬“x‚Å‚Í‚È‚¢‚Æ‚«
+                if (!charged)
                 {
-                    speed_level = speed_max;
+                    //í‚Éˆê’è—Ê‰Á‘¬
+                    rotate_speed += rotate_power;
+
+                    //‘æˆêÛŒÀ‚ÅŒ¸‘¬
+                    if (transform.eulerAngles.z <= rot_border_DtoU)
+                    {
+                        rotate_speed *= rotate_speed_down_rate;
+                    }
+                    //‘æ“ñÛŒÀ‚Åã‚­‰Á‘¬
+                    else if (transform.eulerAngles.z <= rot_border_UtoU)
+                    {
+                        rotate_speed += rotate_power / 4.0f;
+                    }
+                    //‘æOÛŒÀ‚Å‘å‚«‚­‰Á‘¬
+                    else if(transform.eulerAngles.z <= rot_border_UtoD)
+                    {
+                        rotate_speed *= rotate_speed_up_rate;
+                    }
+                    //‘ælÛŒÀ‚ÅŒ¸‘¬
+                    else
+                    {
+                        rotate_speed *= rotate_speed_down_rate;
+                    }
+
+                    //Å‘å‘¬“x‚È‚ç‘¬“xˆê’è‚É
+                    if (rotate_speed >= rotate_speed_max)
+                    {
+                        rotate_speed = rotate_speed_max;
+                        charged = true;
+                        Debug.Log("Full_Charged");
+                    }
                 }
-                transform.Rotate(new Vector3(0, 0, speed_level));
+                else    //Å‘å‘¬“x‚È‚ç‘¬“xˆê’è
+                {
+                    rotate_speed = rotate_speed_max;
+                }
+
+                // startTime = Time.time;
+                
+
+
+                transform.Rotate(new Vector3(0, 0, rotate_speed));
 
                 //Time.timeScale = 0.5f;
 
@@ -76,6 +123,7 @@ public class Rotate : MonoBehaviour
 
                 ball.mass = 1.0f;
 
+                charged = false;
             }
         }
 
@@ -85,7 +133,7 @@ public class Rotate : MonoBehaviour
             {
                 Swich = false;
 
-                speed_level = 0.0f;
+                rotate_speed = rotate_speed_init;
             }
 
         }
