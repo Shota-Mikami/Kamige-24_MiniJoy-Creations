@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9140377133175532847}
   m_Layer: 0
   m_Name: Enemy_Rolling
-  m_TagString: Enemy
+  m_TagString: BossEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

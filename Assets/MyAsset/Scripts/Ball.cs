@@ -31,7 +31,7 @@ public class Ball : MonoBehaviour
     {
         if (transform.parent)
         {
-            if (coll.gameObject.tag == "Enemy")
+            if (coll.gameObject.tag == "Enemy"|| coll.gameObject.tag == "BossEnemy")
             {
                 coll.gameObject.GetComponent<Enemy>().Damage(AttackPower);
             }
