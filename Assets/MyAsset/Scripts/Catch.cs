@@ -14,6 +14,8 @@ public class Catch : MonoBehaviour
     [SerializeField] public Vector3 handPos;
     [SerializeField] public float handSpan;
     [SerializeField] public GameObject player;
+    private Vector3 handPos_Rotation;
+
 
     private bool isHold;
 
@@ -83,10 +85,19 @@ public class Catch : MonoBehaviour
 
         var radius = transform.lossyScale.x * 0.5f;
 
+        
+        if(player.transform.rotation.y==0.0f)
+        {
+            handPos_Rotation=handPos;
+        }
+        else
+        {
+            handPos_Rotation=handPos*-1;
+        }
         //var isHit = Physics.SphereCast(transform.position, radius, transform.right, out hit,1);
         if (!isHold)
         {
-            if (Physics.SphereCast(transform.position + handPos, handSize, transform.right, out hit, handSpan))
+            if (Physics.SphereCast(player.transform.position + handPos_Rotation, handSize, player.transform.right, out hit, handSpan))
             {
                 Debug.Log(hit.collider.tag);
                 if (hit.collider.tag == "ball")
@@ -95,6 +106,12 @@ public class Catch : MonoBehaviour
 
                     CatchUI.gameObject.SetActive(true);//UIÇÃèoåª
                     CatchUI.position = RectTransformUtility.WorldToScreenPoint(Camera.main, deathEnemy.transform.position);//UIÇÃà íuÇÃà⁄ìÆ
+                }
+                else
+                {
+
+                    CatchUI.gameObject.SetActive(false);
+                    deathEnemy = null;
                 }
             }
             else
@@ -109,7 +126,7 @@ public class Catch : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + handPos + transform.right * handSpan, handSize);
+        Gizmos.DrawWireSphere(player.transform.position + handPos_Rotation + player.transform.right * handSpan, handSize);
     }
 }
 

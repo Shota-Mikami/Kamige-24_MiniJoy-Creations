@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55b1e1ad4bed3c4a801831b034eda06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  AttackPower: 0
+  Speed: 1
+  AttackPower: 1
   AirRes: 0
 --- !u!1 &6286709358072191841
 GameObject:
@@ -378,9 +378,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5174949219599431177}
-  speed: 0
+  speed: 2
+  slowSpeed: 1
+  jump: 30
   chara: {x: 0, y: 0, z: 0}
-  hand: {fileID: 8190500843761018848}
 --- !u!1 &7184657537629561346
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +518,7 @@ MonoBehaviour:
   speed_level: 0
   startTime: 0
   chara: {x: 0, y: 0, z: 0}
+  meter: {fileID: 0}
 --- !u!59 &5844274369719341792
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -570,6 +572,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 4527232012095748280}
   deathEnemy: {fileID: 0}
+  handSize: 1
+  handPos: {x: -2, y: 0, z: 0}
+  handSpan: 2
+  player: {fileID: 6286709358072191841}
+  CatchUI: {fileID: 972902231297593800, guid: 54cdae5fe3667fe46926ff27e7facd9d, type: 3}
 --- !u!1 &7507580641543211685
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,11 +832,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 2614557086036816038}
-  m_speed: 0.005
-  speed_max: 5
-  speed_level: 0
+  rotate_power: 0.03
+  rotate_speed_max: 3
+  rotate_speed_init: 0.5
+  rotate_speed_down_rate: 0.99
+  rotate_speed_up_rate: 1.02
+  rot_border_DtoU: 90
+  rot_border_UtoU: 180
+  rot_border_UtoD: 270
   oldspeed_level: 0
-  startTime: 0
+  startTime: 1
 --- !u!59 &8763896432168848699
 HingeJoint:
   m_ObjectHideFlags: 0
