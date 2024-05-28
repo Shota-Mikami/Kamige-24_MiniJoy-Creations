@@ -27,31 +27,39 @@ public class move : MonoBehaviour
         float time = Time.deltaTime;
         float s = speed;
 
-        //ハンマーを回しているとき
-        if (Input.GetMouseButton(0))
+        if (transform.GetChild(0).transform.childCount == 0)
         {
-            s = slowSpeed;
+            s = 0.5f;
         }
 
-        if (Input.GetKey("d"))
+        //if (transform.GetChild(0).transform.childCount != 0)
         {
-            transform.position += new Vector3(s, 0.0f, 0.0f) * time;
-            transform.rotation = new Quaternion(0, 0, 0, 0);
-        }
-        if (Input.GetKey("a"))
-        {
-            transform.position += new Vector3(-s, 0.0f, 0.0f) * time;
-            transform.rotation = new Quaternion(0, 180, 0, 0);
-        }
 
-
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isGround)
+            //ハンマーを回しているとき
+            if (Input.GetMouseButton(0))
             {
-                rb.AddForce(Vector3.up * jump, ForceMode.Impulse);
+                s = slowSpeed;
             }
+
+            if (Input.GetKey("d"))
+            {
+                transform.position += new Vector3(s, 0.0f, 0.0f) * time;
+                transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
+            if (Input.GetKey("a"))
+            {
+                transform.position += new Vector3(-s, 0.0f, 0.0f) * time;
+                transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (isGround)
+                {
+                    rb.AddForce(Vector3.up * jump, ForceMode.Impulse);
+                }
+            }
+
         }
 
         if (Input.GetKeyDown("r"))
@@ -63,7 +71,7 @@ public class move : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, new Vector3(0.0f, -1.0f, 0.0f), out hit, 0.6f))
         {
-            if (hit.collider.tag == "Untagged")
+            if (hit.collider.tag == "Field")
             {
                 isGround = true;
             }
