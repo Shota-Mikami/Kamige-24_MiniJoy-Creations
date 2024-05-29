@@ -7,7 +7,7 @@ TagManager:
   - ball
   - Enemy
   - BossEnemy
-  - DestroyWall
+  - DestroyObj
   layers:
   - Default
   - TransparentFX

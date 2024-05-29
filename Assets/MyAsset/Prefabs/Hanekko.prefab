@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1339280331616384081}
   - component: {fileID: -1769657072984197274}
   - component: {fileID: 2808012275219102507}
+  - component: {fileID: 908969825697846157}
   m_Layer: 0
   m_Name: Hanekko
   m_TagString: Enemy
@@ -165,9 +166,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55b1e1ad4bed3c4a801831b034eda06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 3
   AttackPower: 10
   AirRes: 0
+--- !u!114 &908969825697846157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405405471062703988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793b009ff8defd34d94f8cdc6b2dcb9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistToGround: 0.5
+  Refrect: 2
 --- !u!1 &5863049490548795514
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +195,7 @@ GameObject:
   - component: {fileID: 4637302807443211228}
   - component: {fileID: 9127270106965943831}
   - component: {fileID: 6228157500911433933}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +300,7 @@ GameObject:
   - component: {fileID: 3462811582386050408}
   - component: {fileID: 6744872399200419913}
   - component: {fileID: 5937611956389674092}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

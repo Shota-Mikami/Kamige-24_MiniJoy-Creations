@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     }
 
     //–ß‚è’l‚Å‘Š«QÆH
-    public void Damage(int damage)
+    public virtual void Damage(int damage)
     {
         HP -= damage;
         HP = Mathf.Max(0, HP);
