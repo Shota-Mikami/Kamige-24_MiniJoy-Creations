@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_needle : MonoBehaviour
+public class Destory : DestroyObj
 {
-    //コライダー同士がぶつかった瞬間に呼び出される
-    private void OnTriggerEnter(Collider other)
+    public override void Damage(int damage, GameObject gameObject)
     {
-        if (other.CompareTag("DestroyWall"))
+        if(gameObject.transform.childCount == 1)
         {
-            Destroy(this.gameObject);
+            if(gameObject.transform.GetChild(0).tag == "DestroyWall")
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

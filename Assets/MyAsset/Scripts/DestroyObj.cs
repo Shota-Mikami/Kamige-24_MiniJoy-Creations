@@ -14,7 +14,7 @@ public class DestroyObj : MonoBehaviour
         }
     }
 
-    public virtual void Damage(int damage)
+    public virtual void Damage(int damage, GameObject gameObject)
     {
         DurableValue -= damage;
         DurableValue = Mathf.Max(0, DurableValue);
