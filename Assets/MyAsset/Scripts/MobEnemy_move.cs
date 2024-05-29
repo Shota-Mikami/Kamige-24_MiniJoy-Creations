@@ -41,10 +41,12 @@ public class MobEnemy_move : Enemy
         if (turn)
         {
             nextPosition = currentPosition + transform.right * speed * time;
+            transform.rotation = new Quaternion(0, 0, 0, 0);
         }
         else
         {
-            nextPosition = currentPosition + -transform.right * speed * time;
+            nextPosition = currentPosition + transform.right * speed * time;
+            transform.rotation = new Quaternion(0, 180, 0, 0);
         }
         // ŽŸ‚ÌˆÊ’u‚ÉˆÚ“®
         transform.position = nextPosition;
