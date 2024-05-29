@@ -35,6 +35,11 @@ public class Ball : MonoBehaviour
             {
                 coll.gameObject.GetComponent<Enemy>().Damage(AttackPower);
             }
+
+            if(coll.gameObject.tag == "DestroyObj")
+            {
+                coll.gameObject.GetComponent<DestroyObj>().Damage(1);
+            }
         }
     }
 }
