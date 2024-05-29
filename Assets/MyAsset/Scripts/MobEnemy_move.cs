@@ -62,6 +62,11 @@ public class MobEnemy_move : Enemy
             turn = false;
             //transform.position = new Vector3(targetPos, transform.position.y, transform.position.z);
         };
+
+        if(HP <= 0)
+        {
+            Destroy(target);
+        }
     }
 
 

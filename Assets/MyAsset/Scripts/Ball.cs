@@ -39,7 +39,7 @@ public class Ball : MonoBehaviour
 
             if(coll.gameObject.tag == "DestroyObj")
             {
-                coll.gameObject.GetComponent<DestroyObj>().Damage(1);
+                coll.gameObject.GetComponent<DestroyObj>().Damage(1,this.gameObject);
             }
         }
     }
