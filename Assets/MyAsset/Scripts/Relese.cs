@@ -12,8 +12,8 @@ public class Relese : MonoBehaviour
 
     // public GameObject hand;
 
-    public float m_speed;
-    public float speed_max;
+    public float m_speed;       //âÒì]â¡ë¨óÕ
+    public float speed_max;     //ç≈ëÂâÒì]ë¨ìx
     public float speed_level;
     public float startTime;
 
@@ -39,7 +39,19 @@ public class Relese : MonoBehaviour
         meter.fillAmount = speed_level / speed_max;
         if (!Swich)
         {
-
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (transform.GetChild(0).gameObject.transform.childCount == 1 && transform.GetChild(0).gameObject.transform.GetChild(0).gameObject != null)
+                {
+                    speed_max = transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Ball>().SpeedMax;
+                    m_speed = transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Ball>().Speed;
+                }
+                else
+                { 
+                    speed_max = transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Ball>().SpeedMax;
+                    m_speed = transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Ball>().Speed;
+                }
+            }
 
             if (Input.GetMouseButton(0))
             {

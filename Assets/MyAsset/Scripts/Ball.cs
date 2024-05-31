@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] public float Speed;
-    [SerializeField] public int AttackPower;
+    [SerializeField] public float Speed;        //‰ñ“]‰Á‘¬—Í
+    [SerializeField] public float SpeedMax;     //Å‘å‰ñ“]‘¬“x
+    [SerializeField] public int AttackPower;    
     [SerializeField] public float AirRes;
 
     //‚Ì‚¿‚É‘Š«’Ç‰Á
@@ -34,6 +35,11 @@ public class Ball : MonoBehaviour
             if (coll.gameObject.tag == "Enemy"|| coll.gameObject.tag == "BossEnemy")
             {
                 coll.gameObject.GetComponent<Enemy>().Damage(AttackPower);
+            }
+
+            if(coll.gameObject.tag == "DestroyObj")
+            {
+                coll.gameObject.GetComponent<DestroyObj>().Damage(1,this.gameObject);
             }
         }
     }
