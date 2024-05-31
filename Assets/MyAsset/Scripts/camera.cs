@@ -26,6 +26,7 @@ public class camera : MonoBehaviour
     void Start()
     {
         lerpRatio = 0.0f;
+        Application.targetFrameRate = 120;
     }
 
     // Update is called once per frame
