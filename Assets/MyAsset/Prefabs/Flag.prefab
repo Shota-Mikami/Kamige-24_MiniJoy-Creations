@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7982300143900033944}
   - component: {fileID: 3718002034428035607}
   - component: {fileID: 1171028246910544047}
+  - component: {fileID: 7731645990685866362}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -130,8 +131,20 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &7731645990685866362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219988356657666272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9c281bfc667a74aa7bd32beb7675cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
