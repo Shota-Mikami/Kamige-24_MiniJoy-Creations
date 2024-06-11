@@ -26,11 +26,12 @@ public class StageManager : MonoBehaviour
     void Update()
     {
         //リスポーン
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Player.GetComponent<move>().hp <= 0.0f)
         {
             Player.transform.position = RespawnPos;
             //playerの状況リセット
-
+            Player.GetComponent<move>().Heel(Player.GetComponent<move>().hpMax);
+            Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
 
         //リスポーン更新

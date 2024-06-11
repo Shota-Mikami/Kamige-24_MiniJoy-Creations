@@ -7,7 +7,7 @@ using UnityEngine.PlayerLoop;
 public class move : MonoBehaviour
 {
     public int hpMax = 3;
-    private int hp;
+    public int hp;
 
     public Rigidbody rb;
     public float speed = 2.0f;
@@ -20,7 +20,9 @@ public class move : MonoBehaviour
     public float knockbackPower = 30.0f;
 
     private bool isGround = false;
-   
+
+    [SerializeField] private Vector2 limitSpacePlus;
+    [SerializeField] private Vector2 limitSpaceMinus;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +88,11 @@ public class move : MonoBehaviour
         else
         {
             isGround = false;
+        }
+
+        if(transform.position.x <= limitSpaceMinus.x || transform.position.x >= limitSpacePlus.x || transform.position.y <= limitSpaceMinus.y || transform.position.y >= limitSpacePlus.y)
+        {
+            hp = 0;
         }
     }
 
