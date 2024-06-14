@@ -122,6 +122,11 @@ public class move : MonoBehaviour
                 rb.AddForce(vec * knockbackPower, ForceMode.Impulse);
             }
         }
+
+        if(collision.gameObject.tag == "CheckPoint")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     //‰ñ•œˆ—
