@@ -94,6 +94,19 @@ public class move : MonoBehaviour
         {
             hp = 0;
         }
+
+
+
+
+
+        /////////////
+        ///
+        if (Input.GetKeyDown("b"))
+        {
+            SoundManager.instance.PlaySE(0);
+        }
+        /// 
+        /////////////
     }
 
     public void FixedUpdate()
