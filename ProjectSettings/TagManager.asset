@@ -8,8 +8,7 @@ TagManager:
   - Enemy
   - BossEnemy
   - DestroyObj
-  - Field
-  - DestroyWall
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

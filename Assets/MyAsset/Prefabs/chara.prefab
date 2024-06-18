@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
+  SpeedMax: 0
   AttackPower: 1
   AirRes: 0
 --- !u!1 &6286709358072191841
@@ -183,7 +184,7 @@ GameObject:
   - component: {fileID: 8542387711280602474}
   m_Layer: 0
   m_Name: chara
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,11 +378,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2905d7c36b2bdd847b69c541f3a6ce3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 3
   rb: {fileID: 5174949219599431177}
   speed: 2
   slowSpeed: 1
   jump: 30
   chara: {x: 0, y: 0, z: 0}
+  damageCoolTime: 120
+  knockbackPower: 20
 --- !u!1 &7184657537629561346
 GameObject:
   m_ObjectHideFlags: 0
