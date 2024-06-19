@@ -56,6 +56,9 @@ public class Catch : MonoBehaviour
                 }
                 deathEnemy.transform.parent = transform.GetChild(0).gameObject.transform;
 
+                
+                SoundManager.instance.PlaySE(1);
+                
 
                 ball.SetActive(false);
 
