@@ -136,9 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55b1e1ad4bed3c4a801831b034eda06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  AttackPower: 0
+  Speed: 0.5
+  SpeedMax: 100
+  AttackPower: 1
   AirRes: 0
+  hitSE_enemy_num: 0
+  hitSE_destroyObj_num: 0
 --- !u!54 &8538114051941276026
 Rigidbody:
   m_ObjectHideFlags: 0
