@@ -24,6 +24,7 @@ public class move : MonoBehaviour
     [SerializeField] private Vector2 limitSpacePlus;
     [SerializeField] private Vector2 limitSpaceMinus;
 
+    private float se_WaitTime = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,11 +55,18 @@ public class move : MonoBehaviour
         {
             transform.position += new Vector3(s, 0.0f, 0.0f) * time;
             transform.rotation = new Quaternion(0, 0, 0, 0);
+            
         }
         if (Input.GetKey("a"))
         {
             transform.position += new Vector3(-s, 0.0f, 0.0f) * time;
             transform.rotation = new Quaternion(0, 180, 0, 0);
+        }
+
+        if ((Input.GetKey("a") || Input.GetKey("d")) && se_WaitTime >= 0.8)
+        {
+            SoundManager.instance.PlaySE(0);
+            se_WaitTime = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -95,7 +103,7 @@ public class move : MonoBehaviour
             hp = 0;
         }
 
-
+        se_WaitTime += 1.0f * Time.deltaTime ;
 
 
 

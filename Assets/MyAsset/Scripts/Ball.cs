@@ -8,6 +8,8 @@ public class Ball : MonoBehaviour
     [SerializeField] public float SpeedMax;     //ç≈ëÂâÒì]ë¨ìx
     [SerializeField] public int AttackPower;    
     [SerializeField] public float AirRes;
+    [SerializeField] private int hitSE_enemy_num;
+    [SerializeField] private int hitSE_destroyObj_num;
 
     //ÇÃÇøÇ…ëäê´í«â¡
 
@@ -35,11 +37,13 @@ public class Ball : MonoBehaviour
             if (coll.gameObject.tag == "Enemy"|| coll.gameObject.tag == "BossEnemy")
             {
                 coll.gameObject.GetComponent<Enemy>().Damage(AttackPower);
+                SoundManager.instance.PlaySE(0);
             }
 
             if(coll.gameObject.tag == "DestroyObj")
             {
                 coll.gameObject.GetComponent<DestroyObj>().Damage(1,this.gameObject);
+                SoundManager.instance.PlaySE(0);
             }
         }
     }
