@@ -175,9 +175,7 @@ public class Rotate : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
-                Swich = false;
-
-                rotate_speed = rotate_speed_init;
+                RotateInit();
             }
 
         }
@@ -213,4 +211,10 @@ public class Rotate : MonoBehaviour
         
     }
 
+    public void RotateInit()
+    {
+        Swich = false;
+
+        rotate_speed = rotate_speed_init;
+    }
 }
