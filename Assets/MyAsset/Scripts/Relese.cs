@@ -16,6 +16,9 @@ public class Relese : MonoBehaviour
     public float speed_max;     //最大回転速度
     public float speed_level;
     public float startTime;
+    [SerializeField] private float flyingtime;
+    [SerializeField] private float catch_dist_near = 1.0f;
+    [SerializeField] private float catch_dist_far = 30.0f;
 
 
     public Vector3 chara;
@@ -28,7 +31,7 @@ public class Relese : MonoBehaviour
     void Start()
     {
         speed_level = 0.0f;
-
+        
     }
 
 
@@ -107,47 +110,64 @@ public class Relese : MonoBehaviour
 
             //}
 
+            flyingtime = 0.0f;
         }
 
 
         else
         {
-            
+            flyingtime += Time.deltaTime;
 
             if (Input.GetMouseButtonDown(1))
             {
+                CatchHammer();
+                //Swich = false;
+                ////transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
+                //if (transform.GetChild(0).gameObject.transform.childCount == 1 && transform.GetChild(0).gameObject.transform.GetChild(0).gameObject != null)
+                //{
+                //    transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().isTrigger = true;
+                //}
+                //else
+                //{
+                //    //子オブジェクト全体をtrueにする？
+                //    //Transform[] children = transform.GetChild(0).gameObject.transform.GetComponentsInChildren<Transform>();
+                //    //foreach (Transform child in children)
+                //    //{
+                //    //    child.gameObject.GetComponent<Collider>().isTrigger = true;
+                //    //}
+                //    transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
+                //}
+                ////transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
+                ////this.gameObject.transform.rotation =default;
+                //this.gameObject.transform.parent = body.gameObject.transform;
+                //pole_ob.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                //pole_ob.AddComponent<HingeJoint>();
+                //pole_ob.GetComponent<HingeJoint>().anchor = new Vector3(0.0f, 0.0f, 0.0f);
+                //pole_ob.GetComponent<HingeJoint>().axis = new Vector3(0.0f, 0.0f, 1.0f);
+                //GetComponent<HingeJoint>().connectedBody = body;
 
-                Swich = false;
-                //transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
-                if (transform.GetChild(0).gameObject.transform.childCount == 1 && transform.GetChild(0).gameObject.transform.GetChild(0).gameObject != null)
-                {
-                    transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().isTrigger = true;
-                }
-                else
-                {
-                    //子オブジェクト全体をtrueにする？
-                    //Transform[] children = transform.GetChild(0).gameObject.transform.GetComponentsInChildren<Transform>();
-                    //foreach (Transform child in children)
-                    //{
-                    //    child.gameObject.GetComponent<Collider>().isTrigger = true;
-                    //}
-                    transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
-                }
-                //transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
-                //this.gameObject.transform.rotation =default;
-                this.gameObject.transform.parent = body.gameObject.transform;
-                pole_ob.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                pole_ob.AddComponent<HingeJoint>();
-                pole_ob.GetComponent<HingeJoint>().anchor = new Vector3(0.0f, 0.0f, 0.0f);
-                pole_ob.GetComponent<HingeJoint>().axis = new Vector3(0.0f, 0.0f, 1.0f);
-                GetComponent<HingeJoint>().connectedBody = body;
+                //pole.constraints = RigidbodyConstraints.FreezeRotation;
 
-                pole.constraints = RigidbodyConstraints.FreezeRotation;
-
-                speed_level = 0.0f;
+                //speed_level = 0.0f;
 
             }
 
+            if (flyingtime >= 0.5f)
+            {
+                if (Vector3.Distance(transform.position, pole.transform.position) <= catch_dist_near)
+                {
+                    CatchHammer();
+                }
+                else if (Vector3.Distance(transform.position, pole.transform.position) >= catch_dist_far)
+                {
+                    CatchHammer();
+                }
+                else if (flyingtime >= 5.0f)
+                {
+                    CatchHammer();
+                }
+            }
+            
         }
         /*
 
@@ -161,5 +181,30 @@ public class Relese : MonoBehaviour
         }
 
         */
+    }
+
+    private void CatchHammer()
+    {
+        Swich = false;
+        if (transform.GetChild(0).gameObject.transform.childCount == 1 && transform.GetChild(0).gameObject.transform.GetChild(0).gameObject != null)
+        {
+            transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Collider>().isTrigger = true;
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Collider>().isTrigger = true;
+        }
+        this.gameObject.transform.parent = body.gameObject.transform;
+        pole_ob.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        pole_ob.AddComponent<HingeJoint>();
+        pole_ob.GetComponent<HingeJoint>().anchor = new Vector3(0.0f, 0.0f, 0.0f);
+        pole_ob.GetComponent<HingeJoint>().axis = new Vector3(0.0f, 0.0f, 1.0f);
+        GetComponent<HingeJoint>().connectedBody = body;
+
+        pole.constraints = RigidbodyConstraints.FreezeRotation;
+
+        speed_level = 0.0f;
+
+        body.gameObject.GetComponent<Rotate>().RotateInit();
     }
 }
