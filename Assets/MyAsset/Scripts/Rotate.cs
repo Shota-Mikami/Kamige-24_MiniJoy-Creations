@@ -147,18 +147,13 @@ public class Rotate : MonoBehaviour
                 }
 
                 CheckPlaySEPoint();
-                // startTime = Time.time;
 
                 transform.Rotate(new Vector3(0, 0, rotate_speed));
-
-                //Time.timeScale = 0.5f;
 
                 ball.mass = 0.0f;
             }
             if (Input.GetMouseButtonUp(0))
             {
-                //Time.timeScale = 1.0f;
-                //startTime = 0.0f;
                 Swich = true;
 
                 ball.mass = 1.0f;
@@ -179,19 +174,6 @@ public class Rotate : MonoBehaviour
             }
 
         }
-
-        /*
-    if (Input.GetKeyDown("1"))
-    {
-        speed_level = 2.0f;
-        oldspeed_level = speed_level;
-    }
-    if (Input.GetKeyDown("2"))
-    {
-        speed_level = 3.0f;
-        oldspeed_level = speed_level;
-    }
-        */
     }
 
     private void CheckPlaySEPoint()

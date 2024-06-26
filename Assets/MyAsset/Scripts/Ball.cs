@@ -37,13 +37,13 @@ public class Ball : MonoBehaviour
             if (coll.gameObject.tag == "Enemy"|| coll.gameObject.tag == "BossEnemy")
             {
                 coll.gameObject.GetComponent<Enemy>().Damage(AttackPower);
-                SoundManager.instance.PlaySE(0);
+                //SoundManager.instance.PlaySE(0);
             }
 
             if(coll.gameObject.tag == "DestroyObj")
             {
                 coll.gameObject.GetComponent<DestroyObj>().Damage(1,this.gameObject);
-                SoundManager.instance.PlaySE(0);
+                //SoundManager.instance.PlaySE(0);
             }
         }
     }

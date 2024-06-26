@@ -65,8 +65,8 @@ public class move : MonoBehaviour
 
         if ((Input.GetKey("a") || Input.GetKey("d")) && se_WaitTime >= 0.8)
         {
-            SoundManager.instance.PlaySE(0);
-            se_WaitTime = 0;
+            //SoundManager.instance.PlaySE(0);
+            //se_WaitTime = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
