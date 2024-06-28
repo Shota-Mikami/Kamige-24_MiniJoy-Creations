@@ -3,7 +3,17 @@ guid: 5d7e8b313844b3f47b4054f885585754
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EYESFixed
+    second: {fileID: -3452692206995482456, guid: 050de2976ccab9e46a597527a92bc9f5, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAINTexture
+    second: {fileID: 2100000, guid: 4819544423b1a29439d0c26b2c651b9a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
