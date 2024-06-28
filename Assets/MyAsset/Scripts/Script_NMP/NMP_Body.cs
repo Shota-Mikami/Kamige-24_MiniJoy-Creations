@@ -25,7 +25,7 @@ public class NMP_Body : MonoBehaviour
 
         //ƒWƒƒƒ“ƒv
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, new Vector3(0.0f, -1.0f, 0.0f), out hit, 0.6f))
+        if (Physics.Raycast(transform.position, new Vector3(0.0f, -1.0f, 0.0f), out hit, 1.0f))
         {
             if (hit.collider.tag == "Field")
             {
